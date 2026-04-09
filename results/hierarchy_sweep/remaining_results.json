@@ -1,0 +1,6 @@
+{
+  "Hierarchy (10% evict)": 0.34,
+  "Hierarchy (15% evict)": 0.16,
+  "Hierarchy+Q8 (5% evict)": 0.2,
+  "Hierarchy+Q8 (10% evict)": 0.1
+}

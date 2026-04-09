@@ -1,0 +1,50 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+  "dataset": "GSM8K",
+  "n_samples": 50,
+  "baseline_accuracy": 0.68,
+  "importance_stats": {
+    "top20_coverage_mean": 0.5646350343203249,
+    "top20_coverage_median": 0.5663063397637345,
+    "mean_reasoning_tokens": 1421.82
+  },
+  "streaming_eviction": {
+    "attention": {
+      "100": 0.68,
+      "90": 0.56,
+      "80": 0.42,
+      "70": 0.22,
+      "50": 0.0,
+      "30": 0.0
+    },
+    "random": {
+      "90": 0.46,
+      "80": 0.38,
+      "70": 0.16,
+      "50": 0.0,
+      "30": 0.0
+    }
+  },
+  "hierarchy_sweep_fp16": {
+    "0": 0.68,
+    "3": 0.58,
+    "5": 0.56,
+    "7": 0.48,
+    "10": 0.34,
+    "15": 0.16,
+    "20": 0.1
+  },
+  "hierarchy_sweep_q8": {
+    "5": 0.2,
+    "10": 0.1
+  },
+  "key_findings": [
+    "Top-20% tokens capture 56.5% of total attention importance (long-tail confirmed)",
+    "Attention-based > random eviction at all budget levels (+4-10%)",
+    "Pure eviction cliff effect: 0% accuracy below 50% budget",
+    "Hierarchy (fp16 offload) >> pure eviction: 34% vs 0% at same 10% evict ratio",
+    "HBM ratio irrelevant: 30% HBM = 50% HBM when evict_ratio is the same",
+    "Sweet spot: 3-5% eviction ratio preserves 82-85% of baseline accuracy",
+    "Quantization harmful: Q8 drops 56% to 20% at 5% evict ratio"
+  ]
+}

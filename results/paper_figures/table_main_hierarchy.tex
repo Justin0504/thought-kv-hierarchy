@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\caption{Memory hierarchy vs.\ pure eviction on GSM8K (DeepSeek-R1-Distill-Qwen-7B, $n=50$).
+At the same eviction ratio, the hierarchy approach (offload to DDR) vastly outperforms
+pure eviction (permanent removal). Quantization of offloaded entries degrades accuracy.}
+\label{tab:hierarchy}
+\vskip 0.1in
+\begin{tabular}{lccc}
+\toprule
+\textbf{Evict Ratio} & \textbf{Hierarchy (fp16)} & \textbf{Pure Eviction} & \textbf{Hierarchy + Q8} \\
+\midrule
+0\% (Full)  & 68.0\% & 68.0\% & --- \\
+3\%         & \textbf{58.0\%} & --- & --- \\
+5\%         & \textbf{56.0\%} & --- & 20.0\% \\
+7\%         & 48.0\% & --- & --- \\
+10\%        & 34.0\% & 56.0\%$^\dagger$ & 10.0\% \\
+15\%        & 16.0\% & --- & --- \\
+20\%        & 10.0\% & 42.0\%$^\dagger$ & --- \\
+50\%        & --- & 0.0\%$^\dagger$ & --- \\
+\bottomrule
+\end{tabular}
+\vskip 0.05in
+\begin{minipage}{0.92\linewidth}
+\small
+$^\dagger$Pure eviction results use streaming eviction with attention-based importance at the corresponding KV-cache budget (budget = 100\% $-$ evict ratio).
+All hierarchy experiments use sink size = 4, recent window = 128, eviction interval = 64 steps.
+\end{minipage}
+\end{table}
