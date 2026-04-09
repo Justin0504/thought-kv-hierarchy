@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Attention importance statistics for reasoning tokens
+(DeepSeek-R1-Distill-Qwen-7B on GSM8K, $n=50$).
+The top-20\% of tokens capture over half of total attention importance,
+confirming a long-tail distribution.}
+\label{tab:importance_stats}
+\vskip 0.1in
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Baseline accuracy          & 68.0\% \\
+Mean reasoning tokens      & 1422 \\
+Top-20\% importance coverage (mean)   & 56.5\% \\
+Top-20\% importance coverage (median) & 56.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}

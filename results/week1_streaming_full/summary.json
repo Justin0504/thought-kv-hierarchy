@@ -1,0 +1,19 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+  "n_samples": 50,
+  "sink_size": 4,
+  "window_size": 128,
+  "results": {
+    "budget=100% (full)": 0.68,
+    "budget=90% (attention)": 0.56,
+    "budget=90% (random)": 0.46,
+    "budget=80% (attention)": 0.42,
+    "budget=80% (random)": 0.38,
+    "budget=70% (attention)": 0.22,
+    "budget=70% (random)": 0.16,
+    "budget=50% (attention)": 0.0,
+    "budget=50% (random)": 0.0,
+    "budget=30% (attention)": 0.0,
+    "budget=30% (random)": 0.0
+  }
+}

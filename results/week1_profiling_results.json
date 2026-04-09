@@ -1,0 +1,502 @@
+[
+  {
+    "id": 0,
+    "correct": true,
+    "predicted": "18",
+    "gold": "18",
+    "n_reasoning_tokens": 861,
+    "n_total_tokens": 944,
+    "top20_coverage": 0.5687183939939666,
+    "generated_text": " First! I! Need! To! Find! Out! How! Many! Duck! Eggs! Janet! Has! Each! Day.\n\nShe! Has! 16! Duck! Eggs! Laying! Per! Day.\n\nOkay! So, Janet's ducks! Laid! 16! Eggs! Every! Day. That! Seems! Straightforward.\n\nNext! She! Eats! Three! For! Breakfast! Every! Morning.\n\nSo, every! Morning! Janet! Ate! 3! Eggs! For! Breakfast. That! Subtracts! 3! Eggs! From! The! Total! Each! Day.\n\nThen! She! Bakes! Muffins! For! Her! Friends! Every! Day! With! Four! Eggs.\n\nWait! So, she uses! 4! Eggs! To! Bake! Muffin"
+  },
+  {
+    "id": 1,
+    "correct": true,
+    "predicted": "3",
+    "gold": "3",
+    "n_reasoning_tokens": 1487,
+    "n_total_tokens": 1532,
+    "top20_coverage": 0.5769862837016946,
+    "generated_text": " First! I! Need! To! Understand! The! Problem. So! The! Problem! Is! About! A! Robe! That! Uses! Blue! Fiber! And! White! Fiber. It! Says! The! Robe! Takes! 2! Bolts! Of! Blue! Fiber! And! Half! That! Much! White! Fiber. So! I! Need! To! Find! The! Total! Number! Of! Bolts! Required! For! The! Robe.\n\nOkay! So! Let's! Break! It! Down. First, the robe uses blue! fiber. It needs 2 bolts of blue! fiber. Then! It! Also! Uses! White! Fiber,! But! It! Says! Half! That! Much! So! Half! Of! The! Blue! Fi"
+  },
+  {
+    "id": 2,
+    "correct": false,
+    "predicted": "50000",
+    "gold": "70000",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2123,
+    "top20_coverage": 0.5552827994890727,
+    "generated_text": " First! I! Need! to! understand! what!! the! question! is! asking. So! Josh! buys! a! house! for! $80,000. Then! he! spends! $50,000! on! repairs. After! that, the! value! of! the! house! increased! by! 150%. I! need! to! find! out! how! much! profit! he! made. \n\nWait! So!! Josh! spent! money! on! the! house! and! repairs! and! then!! the!! value! went! up! by! 150%.! So! profit! would! be!! the!! increase! minus! his!! initial! investment? Or! is!! the! increase!!! the! profit? Hmm! Maybe! I! n"
+  },
+  {
+    "id": 3,
+    "correct": true,
+    "predicted": "540",
+    "gold": "540",
+    "n_reasoning_tokens": 1047,
+    "n_total_tokens": 1101,
+    "top20_coverage": 0.5650982086910495,
+    "generated_text": " First! I! Need! To! Understand! What! The! Problem! Is! Asking. So! James! Is! Running! 3! Sprints! 3! Times! A! Week. Each! Sprint! Is! 60! Meters. I! Need! To! Find! The! Total! Distance! He! Runs! In! A! Week.\n\nOkay! So! Let's! Break! It! Down. He! Runs! 3! Sprints! Each! Week. And! He! Does! This! 3! Times! A! Week. Wait! Hmm! That's! A! Bit! Confusing. So! Is! It! 3! Sprints! Per! Day! For! 3! Days? Or! Is! It! 3! Sprints! In! Total! Per! Week? The! Problem! Says! \"3! sprints! 3! times! a!"
+  },
+  {
+    "id": 4,
+    "correct": false,
+    "predicted": "60",
+    "gold": "20",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2177,
+    "top20_coverage": 0.540709956903202,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! Wendi has! A!! flock! of! chickens. Each! chicken! eats! three! cups! of! feed! every! day. She! feeds! them! in! three! separate! meals. So!! Each! meal! must!! contain! enough! feed! for! all! the! chickens. \n\nWait! The! problem! says!! She! gives! 15! cups! in! the! morning, 25! cups! in! the! afternoon. And! we! need! to! find! out! how! much! she! needs! to! give! in! the! final! meal. \n\nHmm! So! each! chicken! gets! three! cups! dai"
+  },
+  {
+    "id": 5,
+    "correct": false,
+    "predicted": "16",
+    "gold": "64",
+    "n_reasoning_tokens": 727,
+    "n_total_tokens": 802,
+    "top20_coverage": 0.555079691774701,
+    "generated_text": " First! I! Need! To! understand! the! problem. So! Kylar! wants! to! buy! 16! glasses. Each! glass! normally! costs! $5, but! every! second! glass! is! 60% of the! original! price. So!! That! means! that! for! every! second! glass, he! pays! 60% of $5. Let me! calculate! what! 60% of $5 is. 60% is! the same! as! 0.6, so! 0.6 multiplied! by! 5. 0.6 * 5 = 3. So! every! second! glass! costs! $3. Okay! Got! that! So! for! every! two! glasses, he! pays! one! at! $5 and! the! second! at! $3. So! for! "
+  },
+  {
+    "id": 6,
+    "correct": false,
+    "predicted": "1.",
+    "gold": "260",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2108,
+    "top20_coverage": 0.566290620768681,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! The! Problem! Is! About! Three! Cities! -! Toulouse, Charleston, and Seattle! Each! Has! A! Certain! Number! Of! Sheep. The! Relationships! Between! Their! Numbers! Of! Sheep! Are! Given! In! The! Problem. And! We! Need! To! Find! The! Total! Number! Of! Sheep! All! Three! Cities! Have! Together.\n\nLet me! Break! It! Down! Step! By! Step.\n\nFirst! Let's!! Identify! What! The! Problem! Is! Asking! For. It! Says! We! Need! To! Find! The! Tota"
+  },
+  {
+    "id": 7,
+    "correct": false,
+    "predicted": "120",
+    "gold": "160",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2135,
+    "top20_coverage": 0.554975465113376,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking. So! Carla! is! downloading! a! 200! GB! file. Normally, she can download! 2! GB! per! minute. But! halfway! through!! the! download, meaning at 100! GB, Windows! forces!! a!! restart! to! install! updates, which! takes! 20! minutes. Then! she! has! to! restart! the! download! from! the! beginning. The! question! is! asking! how! long! does!! it! take! to! download! the! file.\n\nWait! So! I! need! to! calculate! the! total! time! it"
+  },
+  {
+    "id": 8,
+    "correct": false,
+    "predicted": "4",
+    "gold": "45",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2170,
+    "top20_coverage": 0.5394955550587737,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! John is driving for 3 hours! At 60 mph. So! Let! me! Calculate! How! Far! He! Got! From! Home! First.\n\nSo! Distance! equals! speed! multiplied! by! time. So! 60 mph! times! 3 hours! That! Should! Be! 180 miles! So! He! Drives! 180 miles! Away! From! Home! Then! He! Turns! Around! Because! He! Forgot! Something! Important! At! Home.\n\nNow! He! Tries! To! Get! Home! In! 4! Hours. But! The! First! 2! Hours! He! Spends! In! Standstill! Traffic"
+  },
+  {
+    "id": 9,
+    "correct": true,
+    "predicted": "460",
+    "gold": "460",
+    "n_reasoning_tokens": 1151,
+    "n_total_tokens": 1230,
+    "top20_coverage": 0.5717584638372166,
+    "generated_text": " First! I! Need! to! understand! the!! problem. So! Eliza! has!! a!! regular! hourly! rate! of! $10. For!! the! first! 40! hours! she! works! each! week, she! gets! paid! at! this!! rate. But! if! she! works! more! than! 40! hours, she! gets! overtime! pay. Overtime! pay is! 1.2! times! her! regular! rate. So!! in! this! case, she! worked! 45! hours. That! means!! she! worked! 40! regular! hours and! 5! overtime! hours. \n\nOkay! So!! her! earnings! will! be! the! sum! of!! her! regular! pay! for!"
+  },
+  {
+    "id": 10,
+    "correct": true,
+    "predicted": "366",
+    "gold": "366",
+    "n_reasoning_tokens": 1762,
+    "n_total_tokens": 1841,
+    "top20_coverage": 0.5642592522913393,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking. It! says! that! a! new! program! had! 60! downloads! in! the! first! month. Then! in! the! second! month, the! number! of! downloads! was! three! times! as!! many! as! the! first! month. But! then! in! the! third! month! it! reduced! by! 30%. I! need! to! find! the! total! number! of! downloads! over! the! three! months.\n\nOkay! So! let's!! break! this! down! step! by! step. First! I! know! the! first! month's! downloads! are! 60. "
+  },
+  {
+    "id": 11,
+    "correct": true,
+    "predicted": "694",
+    "gold": "694",
+    "n_reasoning_tokens": 1400,
+    "n_total_tokens": 1483,
+    "top20_coverage": 0.5626609713688241,
+    "generated_text": " First! I! Need! to! figure out! the!! cost! of! each! type! of! pastry! separately! and! then! add! them! up! to! get! the! total! cost.\n\nOkay! So, let! me!! write! down! the! given! information! clearly.\n\nTou!la! bought:\n\n1. 3 dozen donuts at $68 per dozen.\n2. 2 dozen mini cupcakes! at $80 per dozen.\n3. 6 dozen mini! cheesecakes at $55 per dozen.\n\nI need! to! calculate! the! total! cost! for! each! item! and! then! sum! them! up.\n\nStarting! with! the! donuts. She bought 3 dozen, and each! doze"
+  },
+  {
+    "id": 12,
+    "correct": true,
+    "predicted": "13",
+    "gold": "13",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2133,
+    "top20_coverage": 0.5487963658927736,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking. So! Carlos! is! planting! a! lemon! tree. The! tree! costs! $90! to! plant. That! is!! the! initial! cost, right? So!! he! spends! $90! right! away! on! planting! the! tree. Then! each! year, the! tree! grows! 7! lemons. He! can! sell! each! lemon! for! $1.5. So! each! year, he! gets! 7! times! $1.5! from! selling! lemons. But! it! also! costs! him! $3! a! year! to! water! and! feed! the! tree. So! each! year,! he! has!! an! incom"
+  },
+  {
+    "id": 13,
+    "correct": true,
+    "predicted": "18",
+    "gold": "18",
+    "n_reasoning_tokens": 1786,
+    "n_total_tokens": 1862,
+    "top20_coverage": 0.5587229535951119,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! Melanie is! A! Door-to-door! Saleswoman. She! Sold! A! Third! Of! Her! Vacuum! Cleaners! At! The! Green! House. Hmm! So! Let! Me!! Write! That! Down.\n\nLet! me! denote! the! total! number! of! vacuum! cleaners! Melanie! started! with! as! V. So! V is!! The! total! number! she! had! initially.\n\nShe! sold! a! third! of! her! vacuum! cleaners! at! the! green! house. So! That! would! be! (1/3)V. So! She! sold! (1/3)V! vacuum! cleaners! to! the"
+  },
+  {
+    "id": 14,
+    "correct": true,
+    "predicted": "60",
+    "gold": "60",
+    "n_reasoning_tokens": 1068,
+    "n_total_tokens": 1139,
+    "top20_coverage": 0.5698307993743488,
+    "generated_text": " First! I! Need! To! Find! Out! How! Many! Students! Are! In! Each! Dance! Category.\n\nOkay! So! There are 20 students in total! 20% are! In! Contemporary! Dance. Let me! Calculate! That! First.\n\n20% of 20 students is... Hmm! 20% is! The same as 0.20 in decimal. So, 0.20 multiplied! By 20. Let! me! Do! The! Math! 0.20 * 20 = 4. So, 4 students are! In! Contemporary! Dance.\n\nNow! That! Leaves! The! Remaining! Students. So, 20 - 4 = 16! Students! Left.\n\nOf! These! 16! Students, !25%! Enrolled! In! J"
+  },
+  {
+    "id": 15,
+    "correct": true,
+    "predicted": "125.",
+    "gold": "125",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2160,
+    "top20_coverage": 0.5506293419295233,
+    "generated_text": " First! I! Need! to! understand! what! the! problem! is! asking. So! the!! merchant! has! two! options: either buy jewelry worth $5,000 or electronic gadgets! worth $8,000. His financial! advisor! says!! that! the! jewelry! market! will! go! up by 2.5% and the electronic gadgets! will rise by 1.2% in the same month. The! merchant wants! to! choose! the option that will give him the maximum! profit at! the end! of! the month. So! I need! to calculate! the profit for each! option and then compare!"
+  },
+  {
+    "id": 16,
+    "correct": true,
+    "predicted": "230",
+    "gold": "230",
+    "n_reasoning_tokens": 1487,
+    "n_total_tokens": 1559,
+    "top20_coverage": 0.5675667204206188,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! There are! Two! Trains! Leaving! San! Rafael! At! The! Same! Time. They! Begin! Traveling! Westward! And! Both! Travel! For! 80! Miles. Then! The! Next! Day, They! Travel! Northwards! Covering! 150! Miles. The! Question! Is! What's! The! Distance! Covered! By! Each! Train! In! The! Two! Days.\n\nWait! So! Each! Train! Is! Going! Westward! For! 80! Miles! On! The! First! Day. Then! The! Next! Day, They! Go! Northwards! For! 150! Miles. So! E"
+  },
+  {
+    "id": 17,
+    "correct": true,
+    "predicted": "57500",
+    "gold": "57500",
+    "n_reasoning_tokens": 989,
+    "n_total_tokens": 1065,
+    "top20_coverage": 0.5671992878712884,
+    "generated_text": " First! I! Need! to! figure out how much! she! makes! per! week! as!! a! teacher. She! gets! paid! $20! per! hour! and! she! works! 35! hours! a! week! as! a! teacher. So, I! should! multiply! 20! by! 35. Let me!! do! that! calculation. 20 times 35. Hmm, 20 times 30 is 600, and 20 times 5 is 100, so adding! them! together, that's 700. So, she makes $700 per week as! a! teacher.\n\nNext! I! need! to! figure! out! how! much! she! makes! per! week! as! a! coach! She! gets! $30! per! hour! and! works!"
+  },
+  {
+    "id": 18,
+    "correct": true,
+    "predicted": "7",
+    "gold": "7",
+    "n_reasoning_tokens": 1542,
+    "n_total_tokens": 1589,
+    "top20_coverage": 0.5713448823528595,
+    "generated_text": " First! I! Need! To! Understand! What! The! Problem! Is! Asking. So! Claire! Makes! A! 3! Egg! Omelet! Every! Morning! For! Breakfast. So, every day! She! Uses! 3! Eggs. And! The! Question! Is! How! Many! Dozens! Of! Eggs! Will! She! Eat! In! 4! Weeks. So, I! Need! To! Find! The! Total! Number! Of! Eggs! She! Consumes! In! 4! Weeks! And! Then! Convert! That! Number! Into! Dozens. \n\nOkay! So, breaking! It! Down! Step! By! Step. First! I! Need! To! Calculate! The! Total! Number! Of! Days! In! 4! W"
+  },
+  {
+    "id": 19,
+    "correct": false,
+    "predicted": "2",
+    "gold": "6",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2131,
+    "top20_coverage": 0.5550349719388686,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking. So! Marissa! is! hiking! a!! total! of! 12! miles. She! has! already! walked! part! of! the! trail. Let me!! break! it! down.\n\nShe! walked! the! first! 4! miles! in! 1! hour. Then! she! walked! the! next! 2! miles! in! another! hour. So! that's! 4! miles! in! the! first! hour! and! 2! miles! in! the! second! hour. So! in! total! she! has! walked! 4! +! 2! =! 6! miles! in! 2! hours. That! means!! she! has! 12! -! 6! =! 6! miles! le"
+  },
+  {
+    "id": 20,
+    "correct": true,
+    "predicted": "15",
+    "gold": "15",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2129,
+    "top20_coverage": 0.5577400605767258,
+    "generated_text": " First! I need! To! understand! what! the! problem! is! asking. So! I have two types of drinks! One is orange, and! the other is pineapple. Each! has! a! certain! amount! of! water! in! them. I! want! to! mix! them! together, but!! during! the! process, I! spill! some! of! the! orange drink. Then! I! need! to! find! out! how! much! water! is! in! the! final! mixture.\n\nOkay! Let! me!! break! it! down! step! by! step.\n\nFirst! I! have! 10! liters! of! orange drink! that! is! two-thirds! water. So! "
+  },
+  {
+    "id": 21,
+    "correct": false,
+    "predicted": "6",
+    "gold": "14",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2111,
+    "top20_coverage": 0.5955146096271986,
+    "generated_text": " First! I! Need! to! understand! the! problem. So!! Raymond! and! Samantha! are! cousins. That! means!! they! are! the! same! age! or! born! in! the! same! year? Wait! No! Wait! Cousins! can!! be!! different! ages! because! they! are! siblings! but!! born! in! different! years. So!! Maybe! they! are!! cousins! in!! the! same! generation, so! same! parents! but! different! siblings. So!! So!! That! doesn't!! necessarily! mean! they! are! the! same! age. So!! So!! I! need! to! figure! out! their! "
+  },
+  {
+    "id": 22,
+    "correct": true,
+    "predicted": "7",
+    "gold": "7",
+    "n_reasoning_tokens": 715,
+    "n_total_tokens": 789,
+    "top20_coverage": 0.5685808412383621,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! Billy! Is! Selling! DVDs! On! Tuesday. He has 8 customers! Let! me!! break! this down! into! parts.\n\nFirst, his first 3 customers each buy 1 DVD. So! That! Would! Be! 3! Customers! Times! 1! DVD! Each. So! 3! Times! 1! Is! 3! DVDs! So! That! Part! Is! 3! DVDs.\n\nNext! His! Next! 2! Customers! Buy! 2! DVDs! Each. So! That! Is! 2! Customers! Times! 2! DVDs! Each. So! 2! Times! 2! Is! 4! DVDs! So! That! Part! Is! 4! DVDs.\n\nThen! His! Last! 3!"
+  },
+  {
+    "id": 23,
+    "correct": true,
+    "predicted": "8",
+    "gold": "8",
+    "n_reasoning_tokens": 1526,
+    "n_total_tokens": 1585,
+    "top20_coverage": 0.580627437944873,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! There's! A! Candle! That! Melts! 2! Centimeters! Every! Hour! It! Burns. Hmm! So! Every! Hour, the! Candle! Shortens! By! 2cm. Got it. So! If it! Burns! For! One! Hour, it! Would! Be! 2cm! Shorter. Makes sense! \n\nNow! The! Question! Is! Asking! How! Many! Centimeters! Shorter! The! Candle! Will! Be! After! Burning! From! 1:00! PM! To! 5:00! PM. So! That's! A! Time! Span! From! 1:00! PM! To! 5:00! PM. Let! Me! Figure! Out! How! Long! That!"
+  },
+  {
+    "id": 24,
+    "correct": false,
+    "predicted": "75.",
+    "gold": "26",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2105,
+    "top20_coverage": 0.5570315165120893,
+    "generated_text": " First! I! Need! To! Find! The! Original! Price! Before! The! Discount. So! Kyle! Bought! The! Book! For! $19.50! Which! Was! After! A! 25%! Discount. That! Means! $19.50! Is! 75%! Of The! Original! Price. Because! 100% - 25% = 75%. So! If! I! Let! The! Original! Price! Be! X, Then! 75% Of X! Equals! $19.50. So! 0.75 * X = 19.50. To! Find! X, I! Need! To! Divide! Both! Sides! By! 0.75. So! X = 19.50 / 0.75. Let me! Calculate! That. 19.50 divided by 0.75. Hmm, 0.75 goes into 19.50 how many times?"
+  },
+  {
+    "id": 25,
+    "correct": true,
+    "predicted": "2",
+    "gold": "2",
+    "n_reasoning_tokens": 1128,
+    "n_total_tokens": 1214,
+    "top20_coverage": 0.5596540238554023,
+    "generated_text": " First! I! Need! To! Find! Out! The! Total! Cost! Of! The! Items! She! Already! Bought. So, let! me! Calculate! The! Cost! Of! The! Chicken! Meal,! The! Milk,! The! Apples,! And! Then! Subtract! That! From! The! Total! Amount! She! Paid. Then! I! Can! Find! Out! How! Much! Money! Is! Left! For! The! Pizza. After! That, I! Can! Divide! The! Remaining! Money! By! The! Cost! Of! Each! Pizza! Box! To! Find! Out! How! Many! Boxes! She! Ordered.\n\nOkay! Let! me!! Write! That! Down! More! Clearly.\n\nFirs"
+  },
+  {
+    "id": 26,
+    "correct": true,
+    "predicted": "243",
+    "gold": "243",
+    "n_reasoning_tokens": 1146,
+    "n_total_tokens": 1233,
+    "top20_coverage": 0.5699658419875694,
+    "generated_text": " First! I! Need! To! Find! The! Total! Cost! For! Each! Category! And! Then! Add! Them! All! Together.\n\nOkay! So! Let's! Start! With! the! Shorts! First. She! Bought! 3! Pairs! Of! Shorts! At! $16.50! Each. So! I! Need! To! Multiply! 3! By! $16.50. Hmm! Let me! Calculate! That. 3! Times! 16.50. Let! me! Do! 16.50! Times! 3. 16.50! Times! 2! Is! 33.00, and! Then! Plus! 16.50! Is! 49.50. So! The! Total! For! Shorts! Is! $49.50.\n\nNext! Let's! Move! On! To! Pants. She! Bought! 3! Pairs! At! $22.50! "
+  },
+  {
+    "id": 27,
+    "correct": false,
+    "predicted": "60",
+    "gold": "16",
+    "n_reasoning_tokens": 675,
+    "n_total_tokens": 752,
+    "top20_coverage": 0.5810636855878523,
+    "generated_text": " First! I! Need! to! figure! out! how!! many! cartons! Cynthia! will! need! for! 60! days. Since! she! eats! one! serving! every! night, that's! one! serving! per! day. So, in! 60! days, she! will! eat! 60! servings. Each! carton! has! 15! servings, so I! should! divide! the! total! servings! by! the! number! of! servings! per! carton. That! would! be! 60! divided! by! 15, which! is! 4. So, she! needs! 4! cartons. Each! carton! costs! $4.00, so! I! multiply! the! number! of! cartons! by! the! co"
+  },
+  {
+    "id": 28,
+    "correct": true,
+    "predicted": "25",
+    "gold": "25",
+    "n_reasoning_tokens": 1211,
+    "n_total_tokens": 1280,
+    "top20_coverage": 0.5719775570360601,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! Henry! Did! A! 60-mile! Bike! Trip. He! Made! Two! Stops. The! First! Stop! Was! After! 20! Miles. The! Second! Stop! Was! 15! Miles! Before! The! End. I! Need! To! Find! Out! How! Many! Miles! He! Traveled! Between! His! First! And! Second! Stops.\n\nHmm! Let! Me! Visualize! This! Trip. So! The! Total! Trip! Is! 60! Miles. He! First! Stopped! After! 20! Miles. So! That! Means! He! rode! 20! Miles! To! The! First! Stop. Then! He! Continuing"
+  },
+  {
+    "id": 29,
+    "correct": true,
+    "predicted": "104",
+    "gold": "104",
+    "n_reasoning_tokens": 1350,
+    "n_total_tokens": 1436,
+    "top20_coverage": 0.5590847880793067,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So, Gloria is shopping! She finds! A! Pair! Of! Boots! That! Fit! Her! Shoe! Budget. Hmm! So! The! Boots! Are! Affordable! For! Her. But! She! Has! To! Choose! Between! The! Boots! And! Two! Pairs! Of! High! Heels. \n\n! The! Two! Pairs! Of! High! Heels! Together! Cost! Five! Dollars! Less! Than! The! Boots. \n\n! One! Pair! Of! Heels! Costs! $33! And! The! Other! Costs! Twice! As! Much. \n\n! The! Question! Is! How! Many! Dollars! Are! The! Boots!"
+  },
+  {
+    "id": 30,
+    "correct": false,
+    "predicted": "10",
+    "gold": "109",
+    "n_reasoning_tokens": 1354,
+    "n_total_tokens": 1412,
+    "top20_coverage": 0.5718318329750713,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking! for. So! Darrell! and! Allen! have!! ages! in! the! ratio! of! 7:11. That means! for every! 7! years! Darrell! is! there! are! 11! years! of! Allen's! age. So!! If! I! let! Darrell's! age! be! 7x! and! Allen's! age! be! 11x!,! then! their! ages! are! in!! the! correct! ratio. \n\nNext! I! know! that! the! sum! of! their! ages! is! 162. So! if! I! add! Darrell's! age! and! Allen's! age! together, it should! equal! 162. That! gives! m"
+  },
+  {
+    "id": 31,
+    "correct": true,
+    "predicted": "80",
+    "gold": "80",
+    "n_reasoning_tokens": 1403,
+    "n_total_tokens": 1485,
+    "top20_coverage": 0.5634484083121076,
+    "generated_text": " First! I! Need! To! Find! Each! Friend's! Guess! Then! Add! Them! Up! And! Divide! By! Three! To! Find! The! Average.\n\nOkay! So! The! First! Friend! Says! 80. That's! Straightforward. Got! That.\n\nThe! Second! Friend! Says! 20! More! Than! Half! The! First! One. Hmm! Let's! Break! That! Down. Half! Of! 80! Is! 40. Then! Adding! 20! To! That! So! 40! Plus! 20! Equals! 60. So! The! Second! Friend! Guesses! 60.\n\nWait! Let me! Make! Sure! I! Did! That! Right. Half! Of! 80! Is! 40. Then! 20! More! Th"
+  },
+  {
+    "id": 32,
+    "correct": true,
+    "predicted": "35",
+    "gold": "35",
+    "n_reasoning_tokens": 882,
+    "n_total_tokens": 942,
+    "top20_coverage": 0.5781136112095107,
+    "generated_text": " First! I! Need! to! figure! out! how!! many! hours! John! spends! walking! each! dog! daily! and! then! multiply! that! by! the! number! of! days! in! a! week. \n\nWait! Each! dog! takes! 0.5! hours! a! day. So! for! one! dog, that's! 0.5! hours! per! day. \n\nBut!! John! has! 10! dogs! to! take! care! of. Hmm! So! does!! that!! mean! I! need! to! multiply! the! daily! time! by! the! number! of! dogs? \n\nWait! Let me!! clarify! the! question. It! says! John! takes! care! of! 10! dogs. Each! dog! tak"
+  },
+  {
+    "id": 33,
+    "correct": true,
+    "predicted": "70",
+    "gold": "70",
+    "n_reasoning_tokens": 1017,
+    "n_total_tokens": 1066,
+    "top20_coverage": 0.5839575032961467,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! Gretchen has a total! of 110 coins. These! coins are! divided! into! gold! and! silver! types. The! problem! states! that!! there! are! 30! more! gold! coins! than! silver! coins. So!! I! need! to! find! out! how! many! gold! coins! Gretchen! has.\n\nHmm! Let me!! break! this! down. Let's!! assign!! variables! to!! make! it! easier. Let's! say! the! number! of! silver! coins! is! S. Then! the! number! of! gold! coins! would! be! S plus! 30,"
+  },
+  {
+    "id": 34,
+    "correct": true,
+    "predicted": "23",
+    "gold": "23",
+    "n_reasoning_tokens": 888,
+    "n_total_tokens": 948,
+    "top20_coverage": 0.5729360137809558,
+    "generated_text": " First! I! Need! To! Understand! What! The! Problem! Is! Asking. So! Let's! Read! It! Again.\n\n\"Si!obhan!has!2!fewer!jewels!than!Aaron.!\" Okay! So! Siobhan's! jewels! are! less! than! Aaron's! by! 2. So! If! Aaron! has! A! jewels, then! Si!obhan! has! A - 2.\n\n\"Aaron!has!5!more!jewels!than!half!of!Raymond's!jewels.\" Hmm! So!! Aaron! has! 5! more! than! half! of! Raymond's! jewels. Let!! me!! write! that! as! an! equation.\n\nLet! me!!! assign! variables! to!! make! it! clearer. Let's! say! R! is! th"
+  },
+  {
+    "id": 35,
+    "correct": false,
+    "predicted": "25",
+    "gold": "9",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2118,
+    "top20_coverage": 0.552828229675225,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking. So! Mike! plays! ping! pong! for! 40! minutes. In the first 20 minutes! he scores 4 points. Then, in! the next 20 minutes, he scores! 25% more! points. I need! to find! the total! points he scored! during! the entire 40 minutes.\n\nOkay! So! let! me!! break! this down. The!! total! time! is! 40! minutes, split into two equal intervals of 20 minutes each. In the first interval, he scores! 4 points. In the second! interval, he scores!"
+  },
+  {
+    "id": 36,
+    "correct": false,
+    "predicted": "30",
+    "gold": "75",
+    "n_reasoning_tokens": 506,
+    "n_total_tokens": 568,
+    "top20_coverage": 0.5771327543157568,
+    "generated_text": " First! I! Need! To! Find! Out! How! Many! Yogurts! Terry! Eats! In! 30! Days. So! He! Eats! 2! Yogurts! Each! Day. So! Over! 30! Days, that's 2 times 30, which is 60. So, Terry needs 60 yogurts in total.\n\nNext! I! Need! To! Figure! Out! How! Many! Sets! Of! 4! Yogurts! He! Needs! To! Buy. Since! Each! Set! Is! 4! For! $5.00, I! Can! Divide! The! Total! Number! Of! Yogurts! By! 4. So, 60 divided by 4 is 15. That means Terry needs to buy 15 sets of 4 yogurts.\n\nNow! To! Find! The! Total! Cost, I! "
+  },
+  {
+    "id": 37,
+    "correct": false,
+    "predicted": "1",
+    "gold": "2",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2129,
+    "top20_coverage": 0.5489198901007893,
+    "generated_text": " First! I! Need! To! Understand! What! The! Problem! Is! Asking. So! John! Has! Some! Toys! He! Plans! To! Sell! Them! And! Use! The! Money! For! Video! Games. Okay! He! Has! 13! Lego! Sets! And! He! Sells! Them! For! $15! Each. So! That! Part! I! Get. He! Ends! Up! Buying! 8! Video! Games! For! $20! Each! And! Has! $5! Left. Hmm! So! He! Spends! Money! On! Video! Games! And! After! That, He! Has! Some! Money! Left. The! Question! Is! How! Many! Lego! Sets! Does! He! Still! Have? So! I! Need! To"
+  },
+  {
+    "id": 38,
+    "correct": false,
+    "predicted": "60",
+    "gold": "10",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2110,
+    "top20_coverage": 0.554017300896148,
+    "generated_text": " First! I! Need! to! understand! the! problem. So! John! runs! a! total! of! 60! miles! each! week. He! runs! 3! days! a! week. On! the! first! day, he! runs! 3! hours, and on! the! other! two! days, he! runs! half! as! much! as!! the! first! day. I! need! to! find! his! running! speed.\n\nWait! So! he! runs! 3! days! a! week, each! day! for! a! certain! number! of! hours, and! the! total! distance! is! 60! miles. So! I! need!! to! find!! his! speed! in! miles! per! hour.\n\nLet! me!! break! it! dow"
+  },
+  {
+    "id": 39,
+    "correct": true,
+    "predicted": "18",
+    "gold": "18",
+    "n_reasoning_tokens": 1441,
+    "n_total_tokens": 1532,
+    "top20_coverage": 0.5624173327202076,
+    "generated_text": " First! I! Need! to! figure! out! Dana's! walking! and! running! speeds. I! know!! that! she! can! skip! at! 3! miles! per! hour. Since! skipping! is! half! as! fast! as!! running, I! can! find! her! running! speed. Let me! write! that! down.\n\nSo! if! skipping! speed! is! half! of! running! speed, then running! speed! is! twice! the! skipping! speed. That! would! make! her! running! speed! 6! miles! per! hour. Wait! Let me!! check! that! again. If! skipping! is! half! the! running! speed, then r"
+  },
+  {
+    "id": 40,
+    "correct": true,
+    "predicted": "8",
+    "gold": "8",
+    "n_reasoning_tokens": 1183,
+    "n_total_tokens": 1246,
+    "top20_coverage": 0.56931078009432,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! There are! Three! People: Brandon, Ben! And! Su! ZY. Each! Has! An! iPhone! And! The! Ages! Of! Their! iPhones! Are! Related! In! Some! Way. The! Problem! Gives! Me! Some! Relationships! Between! Their! Ages! And! Asks! For! Brandon's! iPhone! Age.\n\nLet me! Break! It! Down! Piece! By! Piece.\n\nFirst! Statement: Brandon's iPhone! Is! Four! Times! As! Old! As! Ben's! iPhone.\n\nSo!! Brandon's iPhone Age = 4 * Ben's iPhone Age.\n\nSecond! Stateme"
+  },
+  {
+    "id": 41,
+    "correct": false,
+    "predicted": "1000",
+    "gold": "200",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2194,
+    "top20_coverage": 0.5411772283221091,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! There! is! a!! dragon! named! Perg! that! is! on! top! of! a! mountain!! called! Farbo. He! can! breathe! fire!! that! can! reach! anything! within! 1000! feet. So!! the! dragon's! fire! has!! a! radius! of! 1000! feet. That! means! anything! within! a! circle! with! a! radius! of! 1000! feet! is! in! danger! from! the! dragon.\n\nThen! there's! Polly! who! can! throw! a! gold! javelin! for! a! distance! of! 400! feet! without! any!!!! obst"
+  },
+  {
+    "id": 42,
+    "correct": true,
+    "predicted": "26",
+    "gold": "26",
+    "n_reasoning_tokens": 527,
+    "n_total_tokens": 627,
+    "top20_coverage": 0.5688281945877908,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So Grandma Jones made! 5 apple pies. Each! pie! was! cut! into! 8 pieces. So!! That! means! each! pie! has! 8! slices. So! 5! pies! times! 8! slices per pie. Let! me!! calculate! that! first.\n\n5 multiplied! by! 8. Hmm! 5 times 8 is 40. So! there! were! 40! slices! in! total! at! the! beginning! of! the! evening.\n\nThen!! the!! guests! took! some! slices! and! there! were! 14! left! at! the! end. So!! I! need! to! find! out! how! many! slices! "
+  },
+  {
+    "id": 43,
+    "correct": true,
+    "predicted": "48",
+    "gold": "48",
+    "n_reasoning_tokens": 1395,
+    "n_total_tokens": 1475,
+    "top20_coverage": 0.567886308242739,
+    "generated_text": " First! I! Need! to! find! out! how!! many! calories! are! in! one! gram! of! chips. Then! I! can!! determine! how! many! grams! I! can! eat! without! exceeding! my! daily! target.\n\nOkay! So, the bag! has! 250! calories! per! serving, and! there! are! 5! servings! in! 300g. So, first! I! should! find! out! how! many! calories! are! in! one! gram! of! chips.\n\nWait! Maybe! I! should! start! by! figuring! out!! the!! total! calories! in! the! entire! bag. Since! it's! 250! calories! per! serving! a"
+  },
+  {
+    "id": 44,
+    "correct": true,
+    "predicted": "20.00",
+    "gold": "20",
+    "n_reasoning_tokens": 750,
+    "n_total_tokens": 846,
+    "top20_coverage": 0.5663220587587878,
+    "generated_text": " First! I! Need! to! figure! out! how! much! supplies!! cost! for! making! 20! candles. Since! each! pound! of! beeswax! makes! 10! candles, I! need! to! determine! how! many! pounds! he! needs! to! make! 20! candles. So, 20! candles divided by 10! candles per pound equals 2! pounds of beeswax. \n\nNext! I! need! to! calculate! the! cost! of! the! supplies. The! problem! says! that! one! pound! of! beeswax! and! the! wicks! cost! $10.00. So, if he uses 2! pounds, the total! cost! would be 2! times"
+  },
+  {
+    "id": 45,
+    "correct": true,
+    "predicted": "104",
+    "gold": "104",
+    "n_reasoning_tokens": 2047,
+    "n_total_tokens": 2158,
+    "top20_coverage": 0.5510905250257554,
+    "generated_text": " First! I! Need! to! figure out! how! many! articles Meredith wrote each! day. Then! I! can!! calculate! the! total! hours! by! multiplying! the! number! of! articles! by! the! average! time! per! article.\n\nOkay! Let's!! start! with! Monday. Meredith wrote 5 articles. That! seems!! straightforward. So, on Monday, she wrote 5 articles.\n\nNow! onto! Tuesday. It! says! she wrote 2/5 times! more! articles! than! on! Monday. Hmm! Wait! Let! me!! make! sure! I! understand!! this! correctly. When!! it! "
+  },
+  {
+    "id": 46,
+    "correct": true,
+    "predicted": "163",
+    "gold": "163",
+    "n_reasoning_tokens": 1128,
+    "n_total_tokens": 1240,
+    "top20_coverage": 0.564865050881749,
+    "generated_text": " First! I! Need! To! Understand! The! Problem.\n\nOkay! So! Candice had 80 post!-!It! notes! in! her! purse! before! she! went! to! work. Then! she! bought! a!!package! of! more! Post!-!It! notes! and! used! some! of! them! at! work. In! the! end! she! had! 23! left! So! I! need! to! find! out! how! many! she! bought! from! the! package.\n\nLet! me!! break! it! down! step! by! step.\n\nFirst! step! is!! to! figure! out! how! many! post!-!It! notes! she! used! in! total. She! started! with! 80! and! en"
+  },
+  {
+    "id": 47,
+    "correct": true,
+    "predicted": "800",
+    "gold": "800",
+    "n_reasoning_tokens": 1268,
+    "n_total_tokens": 1337,
+    "top20_coverage": 0.5668005652143784,
+    "generated_text": " First! I! Need! to! understand! what!! the! problem! is! asking! and!! what! information! is! given. So! let's! break! it! down.\n\nJohn buys! twice! as! many! red! ties! as! blue! ties. So!! if! he! buys! 2! red! ties! for! every! 1! blue! tie, that! means! the! number! of! red! ties! is! double! the! number! of! blue! ties. So! let's!! denote! the! number! of! blue! ties! as! B. Then! the! number! of! red! ties! would! be! 2B.\n\nNext! the! red! ties! cost! 50%! more! than! blue! ties. So!! if! a"
+  },
+  {
+    "id": 48,
+    "correct": true,
+    "predicted": "8",
+    "gold": "8",
+    "n_reasoning_tokens": 878,
+    "n_total_tokens": 933,
+    "top20_coverage": 0.5820215588617836,
+    "generated_text": " First! I! Need! To! Make! Sure! I! Understand! The! Problem! Correctly.\n\nOkay! So! Tracy has! A! Wire! That! Is! 4! Feet! Long. She! Cut! It! Into! Pieces! That! Are! 6! Inches! Long. And! The! Question! Is! How! Many! Pieces! She! Got.\n\nHmm! Wait! So! The! Wire! Is! Me! In! Feet! And! The! Cut! Into! Pieces! Are! Me! In! Inches. I! Need! To! Make! Sure! That! The! Units! Are! The! Same! Before! I! Proceed.\n\nRight! So! 4! Feet! To! Inches! Or! 6! Inches! To! Feet! Let's! Choose! One. Maybe! Con"
+  },
+  {
+    "id": 49,
+    "correct": true,
+    "predicted": "30",
+    "gold": "30",
+    "n_reasoning_tokens": 661,
+    "n_total_tokens": 723,
+    "top20_coverage": 0.57616521993219,
+    "generated_text": " First! I! Need! To! Find! The! Total! Number! Of! Units! In! The! Building. Since! The! Building! Has! 15! Floors! And! Each! Floor! Has! 8! Units, I! Can! Multiply! 15! By! 8. Let me calculate that: 15 multiplied! By! 8. Hmm, 10 times 8 is 80, and 5 times 8 is 40, so 80 plus 40 is 120. So, the total! Number! Of! Units! Is! 120.\n\nNext, I! Need! To! Find! Out! How! Many! Units! Are! Occupied. The! Problem! Says! That! 3/4! Of! The! Building! Is! Occupied. So, I! Should! Calculate! 3/4! Of! 120. "
+  }
+]

@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\caption{Streaming KV-cache eviction on GSM8K (DeepSeek-R1-Distill-Qwen-7B, $n=50$).
+Attention-based eviction consistently outperforms random, but naive eviction causes sharp
+accuracy degradation beyond 80\% budget, motivating a memory hierarchy approach.}
+\label{tab:streaming_eviction}
+\vskip 0.1in
+\begin{tabular}{lccc}
+\toprule
+\textbf{KV Budget} & \textbf{Attention} & \textbf{Random} & \textbf{$\Delta$ (Attn $-$ Rand)} \\
+\midrule
+100\% (Full) & 68.0\% & --- & baseline \\
+90\%         & 56.0\% & 46.0\% & \textbf{+10.0\%} \\
+80\%         & 42.0\% & 38.0\% & \textbf{+4.0\%} \\
+70\%         & 22.0\% & 16.0\% & \textbf{+6.0\%} \\
+50\%         & 0.0\%  & 0.0\%  & --- \\
+30\%         & 0.0\%  & 0.0\%  & --- \\
+\bottomrule
+\end{tabular}
+\vskip 0.05in
+\begin{minipage}{0.9\linewidth}
+\small
+\textit{Setup:} Greedy decoding, max 2048 tokens, sink size = 4, recent window = 128.
+Eviction triggered when cache exceeds budget. Importance = cumulative attention received.
+\end{minipage}
+\end{table}
