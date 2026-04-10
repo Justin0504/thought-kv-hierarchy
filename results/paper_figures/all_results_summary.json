@@ -1,16 +1,29 @@
 {
   "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
-  "dataset": "GSM8K",
   "n_samples": 50,
-  "baseline_accuracy": 0.68,
+  "baseline_gsm8k": 0.66,
+  "baseline_math": 0.22,
   "importance_stats": {
     "top20_coverage_mean": 0.5646350343203249,
     "top20_coverage_median": 0.5663063397637345,
     "mean_reasoning_tokens": 1421.82
   },
+  "hierarchy_sweep_fp16": {
+    "0": 0.66,
+    "3": 0.6,
+    "5": 0.58,
+    "7": 0.48,
+    "10": 0.34,
+    "15": 0.16,
+    "20": 0.1
+  },
+  "hierarchy_sweep_q8": {
+    "5": 0.2,
+    "10": 0.1
+  },
   "streaming_eviction": {
     "attention": {
-      "100": 0.68,
+      "100": 0.66,
       "90": 0.56,
       "80": 0.42,
       "70": 0.22,
@@ -25,26 +38,41 @@
       "30": 0.0
     }
   },
-  "hierarchy_sweep_fp16": {
-    "0": 0.68,
-    "3": 0.58,
-    "5": 0.56,
-    "7": 0.48,
-    "10": 0.34,
-    "15": 0.16,
-    "20": 0.1
+  "h2o_baseline": {
+    "128": 0.02,
+    "256": 0.02,
+    "384": 0.1,
+    "512": 0.08,
+    "1024": 0.3
   },
-  "hierarchy_sweep_q8": {
-    "5": 0.2,
-    "10": 0.1
+  "multi_benchmark": {
+    "gsm8k": {
+      "0": 0.66,
+      "3": 0.6,
+      "5": 0.54,
+      "10": 0.34
+    },
+    "math": {
+      "0": 0.22,
+      "3": 0.14,
+      "5": 0.12,
+      "10": 0.04
+    }
+  },
+  "scoring_ablation": {
+    "Attention\n(ours)": 0.58,
+    "VATP": 0.5,
+    "Combined": 0.46,
+    "Redundancy": 0.42
   },
   "key_findings": [
     "Top-20% tokens capture 56.5% of total attention importance (long-tail confirmed)",
-    "Attention-based > random eviction at all budget levels (+4-10%)",
-    "Pure eviction cliff effect: 0% accuracy below 50% budget",
-    "Hierarchy (fp16 offload) >> pure eviction: 34% vs 0% at same 10% evict ratio",
-    "HBM ratio irrelevant: 30% HBM = 50% HBM when evict_ratio is the same",
-    "Sweet spot: 3-5% eviction ratio preserves 82-85% of baseline accuracy",
-    "Quantization harmful: Q8 drops 56% to 20% at 5% evict ratio"
+    "Hierarchy (3% evict) = 60% vs H2O (budget=1024) = 30% on GSM8K",
+    "H2O achieves only 2% at budget<=256, confirming cliff effect",
+    "Attention-only scoring (58%) > VATP (50%) > Combined (46%) > Redundancy (42%)",
+    "MATH-500 trends consistent: hierarchy preserves 64% of baseline at 3% evict",
+    "Sweet spot: 3-5% eviction preserves 88-91% of baseline accuracy",
+    "Quantization harmful: Q8 drops 58% to 20% at 5% evict ratio",
+    "HBM ratio irrelevant: 30% HBM = 50% HBM when evict_ratio is constant"
   ]
 }
