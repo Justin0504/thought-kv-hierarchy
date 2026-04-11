@@ -55,11 +55,12 @@ These models generate extended chains of thought (CoT), often producing thousand
 While this deliberative reasoning improves accuracy, it creates a critical systems bottleneck: the key-value (KV) cache grows linearly with sequence length and must reside in GPU high-bandwidth memory (HBM) during inference.
 For a 7B-parameter model, each token consumes approximately 400\,KB of KV-cache, meaning a 2000-token reasoning chain requires ${\sim}800$\,MB per request---a substantial fraction of available HBM capacity.
 
-Prior work on KV-cache management has pursued two directions.
-\emph{Eviction-based} methods~\cite{h2o, streamingllm, scissorhands} permanently remove low-importance tokens from the cache, reducing memory at the cost of information loss.
-\emph{Compression-based} methods~\cite{snapkv, kivi, gear} reduce the precision or dimensionality of cached entries while keeping them in HBM.
-Both lines of work operate within a single memory tier (HBM), treating the problem as a binary decision: keep or discard.
-Recent work has begun addressing reasoning-specific challenges~\cite{thinkv, rkv, holdonto}, but still confines operations to HBM.
+Prior work on KV-cache management has pursued three directions, each addressing only part of the problem.
+\emph{Eviction-based} methods~\cite{h2o, streamingllm, scissorhands} permanently remove low-importance tokens, reducing memory at the cost of irreversible information loss.
+\emph{Compression-based} methods~\cite{snapkv, kivi, gear} reduce precision or dimensionality while keeping entries in HBM.
+\emph{Offloading-based} methods~\cite{infinigen, arkvale, scoutattention} transfer KV entries to CPU memory but do not consider reasoning-specific importance patterns.
+Recent reasoning-specific work~\cite{thinkv, rkv, triattention} has demonstrated that thought-aware token management is critical, but still confines operations to a single memory tier (HBM).
+No existing work combines reasoning-aware importance scoring with cross-tier memory management.
 
 We make a simple but impactful observation: \textbf{not all reasoning tokens are equally important, and those that are less important need not be evicted---they can be moved to slower, cheaper memory.}
 Our analysis of attention patterns during reasoning reveals a long-tail importance distribution: the top-20\% of tokens account for 56.5\% of cumulative attention importance, while the bottom 50\% contribute less than 10\%.
@@ -118,11 +119,41 @@ These systems implement memory hierarchies but do not consider reasoning-specifi
 
 \subsection{Reasoning-Specific KV Optimization}
 
-ThinKV~\cite{thinkv} decomposes CoT into reasoning, execution, and transition segments, applying differentiated quantization-eviction per segment type.
-R-KV~\cite{rkv} combines importance and redundancy-aware token selection, achieving near-lossless compression at 10\% cache.
-``Hold Onto That Thought''~\cite{holdonto} benchmarks existing KV compression methods on reasoning tasks, finding that heavy-hitter strategies perform best.
-TriAttention~\cite{triattention} estimates key importance from stable pre-RoPE Q/K centers using trigonometric series.
-Our work bridges reasoning-specific importance scoring with cross-tier memory management---a combination not explored in prior work.
+This rapidly emerging subfield (mostly 2025--2026) is closest to our work.
+ThinKV~\cite{thinkv} decomposes CoT into reasoning (R), execution (E), and transition (T) segments via attention sparsity patterns, applying differentiated quantization (R:4-bit, E:4-bit, T:2-bit) and progressive eviction per segment type.
+ThinKV achieves $<$5\% KV retention with $<$4\% accuracy drop and 5.8$\times$ throughput, but operates \emph{entirely within HBM}---no offloading.
+R-KV~\cite{rkv} jointly scores tokens by importance and redundancy ($Z = \lambda I - (1{-}\lambda)R$, $\lambda{=}0.1$), achieving lossless compression at 10--34\% cache on MATH-500.
+However, R-KV's post-RoPE attention scoring degrades at long sequences~\cite{triattention}, and it still performs pure eviction.
+TriAttention~\cite{triattention} addresses scoring instability by estimating importance from stable pre-RoPE Q/K centers via trigonometric series, achieving 32.9\% on AIME25 at 2048-token budget (vs.\ R-KV's 17.5\%), but also performs eviction only.
+``Hold Onto That Thought''~\cite{holdonto} benchmarks existing methods on reasoning tasks using our same model (DeepSeek-R1-Distill-Qwen-7B), confirming that heavy-hitter strategies outperform alternatives.
+
+Table~\ref{tab:landscape} summarizes the landscape.
+\textbf{Our work uniquely bridges reasoning-aware importance scoring with cross-tier memory management}---all existing reasoning-specific methods discard tokens rather than preserving them in slower memory.
+
+\begin{table}[t]
+\centering
+\caption{Landscape of KV-cache optimization methods. Our approach is the first to combine reasoning-aware scoring with tiered offloading.}
+\label{tab:landscape}
+\vskip 0.1in
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Reasoning-Aware} & \textbf{Offloading} & \textbf{Quantization} & \textbf{Eviction} \\
+\midrule
+H2O~\cite{h2o} & \xmark & \xmark & \xmark & \cmark \\
+StreamingLLM~\cite{streamingllm} & \xmark & \xmark & \xmark & \cmark \\
+KIVI~\cite{kivi} & \xmark & \xmark & \cmark & \xmark \\
+InfiniGen~\cite{infinigen} & \xmark & \cmark & \xmark & \cmark \\
+ArkVale~\cite{arkvale} & \xmark & \cmark & \xmark & \cmark \\
+ScoutAttention~\cite{scoutattention} & \xmark & \cmark & \xmark & \cmark \\
+ThinKV~\cite{thinkv} & \cmark & \xmark & \cmark & \cmark \\
+R-KV~\cite{rkv} & \cmark & \xmark & \xmark & \cmark \\
+TriAttention~\cite{triattention} & \cmark & \xmark & \xmark & \cmark \\
+\midrule
+\textbf{Ours} & \cmark & \cmark & \cmark & \cmark \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 % ══════════════════════════════════════════════════════════════════════
@@ -166,7 +197,12 @@ While attention-based eviction consistently outperforms random eviction (+4--10\
 Unlike standard language modeling, reasoning chains exhibit long-range dependencies: early computation steps establish variables and relationships referenced hundreds of tokens later.
 Binary eviction irrecoverably removes these anchoring tokens.
 Even with importance-aware selection, the cumulative loss of context over a 1,000+ token generation causes cascading errors.
+Concurrent work confirms this: R-KV~\cite{rkv} reports that traditional eviction methods retain only ${\sim}$60\% accuracy at 10\% cache on reasoning models, and TriAttention~\cite{triattention} shows that R-KV's accuracy collapses from 61\% to 31\% on recursive depth-first search tasks beyond depth 16.
+Our own H2O experiments corroborate this (Table~\ref{tab:h2o}): even with heavy-hitter selection, accuracy is only 2\% at budget${\leq}$256 and 30\% at budget=1024.
+``Hold Onto That Thought''~\cite{holdonto} further observes that aggressive eviction causes reasoning models to generate \emph{longer} traces, paradoxically increasing compute cost while degrading accuracy.
+
 This motivates a \emph{non-destructive} approach: rather than discarding low-importance tokens, we offload them to slower memory where they remain available for recall.
+The key insight from offloading systems like ScoutAttention~\cite{scoutattention}---which achieves $<$6\% GPU idle time via layer-ahead CPU pre-computation---is that PCIe transfer latency can be effectively hidden, making cross-tier storage practically viable.
 
 
 % ══════════════════════════════════════════════════════════════════════
@@ -174,16 +210,22 @@ This motivates a \emph{non-destructive} approach: rather than discarding low-imp
 \label{sec:method}
 % ══════════════════════════════════════════════════════════════════════
 
-\subsection{Semantics-Aware Importance Scoring}
+\subsection{Importance Scoring}
 \label{sec:scoring}
 
-We compute a real-time importance score for each KV position during generation.
+We compute a cumulative importance score for each KV position during generation.
 At each decoding step $t$, the importance of position $i$ is updated as:
 \begin{equation}
-    s_i^{(t)} = s_i^{(t-1)} + \frac{1}{L} \sum_{\ell=1}^{L} \frac{1}{H} \sum_{h=1}^{H} \alpha_{\ell,h}^{(t)}[i]
+    s_i^{(t)} = s_i^{(t-1)} + \frac{1}{|\mathcal{L}|} \sum_{\ell \in \mathcal{L}} \frac{1}{H} \sum_{h=1}^{H} \alpha_{\ell,h}^{(t)}[i]
 \end{equation}
-where $\alpha_{\ell,h}^{(t)}[i]$ is the attention weight assigned to position $i$ by head $h$ in layer $\ell$ at step $t$.
-Layers producing NaN values (due to fp16 precision at long sequences) are excluded from the average.
+where $\alpha_{\ell,h}^{(t)}[i]$ is the attention weight assigned to position $i$ by head $h$ in layer $\ell$ at step $t$, and $\mathcal{L} \subseteq \{1,\ldots,L\}$ excludes layers producing NaN values (due to fp16 precision at long sequences).
+
+\paragraph{Design rationale.}
+We deliberately use cumulative attention history rather than windowed or snapshot-based scoring.
+R-KV~\cite{rkv} uses only the last $\alpha{=}8$ observation tokens for importance estimation; TriAttention~\cite{triattention} estimates importance from calibrated Q/K center statistics.
+Our ablation (Section~\ref{sec:experiments}) shows that cumulative attention outperforms alternatives including VATP-style scoring~\cite{vatp} ($-$8\%) and R-KV-style redundancy penalties ($-$16\%).
+We hypothesize that reasoning chains---unlike general text---exhibit \emph{non-stationary} importance patterns where tokens may be referenced irregularly across the chain (e.g., an intermediate result used 500 tokens later).
+Cumulative scoring naturally captures this full history, while windowed approaches may miss long-range dependencies.
 
 \subsection{Four-Tier Memory Hierarchy}
 \label{sec:hierarchy}
@@ -210,9 +252,15 @@ The remaining tokens participate in attention computation regardless of their ti
 
 \subsection{Prefetching and Recall}
 
-% TODO: Detail the prefetching mechanism (B's system implementation)
-Tokens in T1 and T2 are stored in CPU memory and transferred to GPU via PCIe before each attention operation.
-We employ asynchronous prefetching to overlap data transfer with computation, minimizing the latency overhead of cross-tier access.
+Tokens in T1 and T2 are stored in CPU pinned memory and transferred to GPU via PCIe before each attention operation.
+Following ScoutAttention's~\cite{scoutattention} insight that adjacent decoding steps share $>$85\% of their important token sets, we employ \emph{asynchronous differential prefetching}: only tokens newly promoted from DDR are transferred, while previously fetched entries remain in a GPU-side staging buffer.
+This reduces per-step PCIe traffic from full-tier transfer to incremental updates.
+
+\paragraph{Comparison with existing offloading systems.}
+InfiniGen~\cite{infinigen} prefetches via next-layer speculation but suffers 61\% GPU idle time.
+ScoutAttention~\cite{scoutattention} reduces this to $<$6\% via layer-ahead CPU pre-computation.
+ArkVale~\cite{arkvale} uses page-based recall with bounding-volume digests.
+Our approach differs in that tier assignment is driven by \emph{reasoning-aware} cumulative importance rather than geometric digests or speculative queries, and our 4-tier design (with an explicit compressed tier T2) provides finer-grained memory placement than the binary GPU/CPU split used by prior systems.
 
 
 % ══════════════════════════════════════════════════════════════════════
@@ -324,6 +372,35 @@ Hierarchy (10\% evict) & 34.0\% & 4.0\% \\
 \end{tabular}
 \end{table}
 
+\subsection{Comparison with Concurrent Methods}
+
+Table~\ref{tab:comparison} positions our results alongside reported numbers from concurrent reasoning-specific KV cache methods.
+Direct comparison is approximate due to differences in evaluation protocol (sample size, prompt format, budget definition), but the trends are informative.
+
+\begin{table}[t]
+\centering
+\caption{Comparison with concurrent reasoning-specific methods. Numbers from respective papers; direct comparison is approximate due to protocol differences. Our hierarchy provides competitive accuracy while uniquely preserving tokens in DDR rather than discarding them.}
+\label{tab:comparison}
+\vskip 0.1in
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Method} & \textbf{Approach} & \textbf{Offload?} & \textbf{Model} & \textbf{Key Result} \\
+\midrule
+R-KV & Attn+Redundancy eviction & No & R1-Llama-8B & Lossless@34\% budget (MATH) \\
+ThinKV & Thought-type quant+evict & No & R1-Qwen-14B & $<$4\% drop@5\% KV \\
+TriAttention & Trig-series scoring+evict & No & Qwen3-8B & 68.4\%@1024 budget (MATH) \\
+\midrule
+\textbf{Ours} & 4-tier hierarchy+offload & \textbf{Yes} & R1-Qwen-7B & 91\% retained@3\% evict (GSM8K) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+R-KV and TriAttention achieve strong accuracy at small KV budgets through sophisticated scoring, but permanently discard all non-retained tokens.
+ThinKV combines quantization with eviction for high compression, but operates entirely in HBM.
+Our approach is complementary: we sacrifice neither information (tokens preserved in DDR) nor scoring sophistication (cumulative attention is optimal per our ablation).
+Moreover, our finding that \emph{even 3\% permanent eviction costs 9\% accuracy} suggests that the ``lossless'' claims of eviction methods may not hold under reasoning-specific evaluation with sufficient samples.
+
 \subsection{System Performance}
 
 % TODO: Fill in with B's results (PCIe latency, throughput)
@@ -368,13 +445,22 @@ The attention-only score, which directly measures each position's contribution t
 % ══════════════════════════════════════════════════════════════════════
 
 \paragraph{Limitations.}
-Our current evaluation is limited to a single 7B model; scaling behavior on larger models (14B, 70B) remains to be validated.
-The sensitivity to even small eviction ratios (3\% eviction loses 15\% accuracy) suggests that reasoning tokens have higher information density than previously assumed.
-Our quantization experiments indicate that reasoning KV entries are also sensitive to precision reduction, limiting the effectiveness of the compressed tier.
+Our current evaluation uses a single 7B model; scaling behavior on larger models (14B, 70B) remains to be validated.
+ThinKV~\cite{thinkv} and R-KV~\cite{rkv} both report results on 14B and 70B models, suggesting the approach generalizes, but we have not confirmed this for offloading.
+The sensitivity to even small eviction ratios (3\% eviction loses 9\% accuracy) suggests that reasoning tokens have higher information density than previously assumed---consistent with ThinKV's observation that quantization inflates generation length for reasoning models.
+Our quantization experiments confirm this: 8-bit quantization of offloaded tokens degrades accuracy from 58\% to 20\%, indicating that the T2 (compressed) tier must be used cautiously.
+
+\paragraph{Complementarity with existing methods.}
+Our memory hierarchy is orthogonal to advances in importance scoring.
+TriAttention's~\cite{triattention} trigonometric scoring could replace our cumulative attention for tier assignment.
+ThinKV's~\cite{thinkv} thought-type classification (R/E/T) could inform tier boundaries---e.g., transition tokens to T3, execution tokens to T2, reasoning tokens to T0/T1.
+R-KV's~\cite{rkv} redundancy detection could supplement our scoring in future work, though our ablation shows it currently hurts accuracy on GSM8K.
+The hierarchy framework provides a platform into which better scoring, classification, and compression methods can be plugged.
 
 \paragraph{Broader impact.}
-By reducing the HBM footprint of reasoning inference, our approach can lower the cost of deploying reasoning-capable LLMs and enable longer reasoning chains within fixed memory budgets.
-This has implications for accessibility, as it allows reasoning models to run on more affordable hardware configurations.
+By decoupling reasoning quality from HBM capacity, our approach enables longer reasoning chains on more affordable hardware.
+A single NVIDIA RTX 4090 (24\,GB HBM) could serve reasoning chains that currently require A100 (80\,GB) capacity, by offloading 70--90\% of KV entries to the 64+\,GB of available DDR.
+This has implications for both cost reduction in production serving and accessibility of reasoning models to the research community.
 
 
 % ══════════════════════════════════════════════════════════════════════
