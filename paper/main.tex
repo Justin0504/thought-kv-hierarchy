@@ -264,6 +264,39 @@ ScoutAttention~\cite{scoutattention} reduces this to $<$6\% via layer-ahead CPU 
 ArkVale~\cite{arkvale} uses page-based recall with bounding-volume digests.
 Our approach differs in that tier assignment is driven by \emph{reasoning-aware} cumulative importance rather than geometric digests or speculative queries, and our 4-tier design (with an explicit compressed tier T2) provides finer-grained memory placement than the binary GPU/CPU split used by prior systems.
 
+\subsection{Approximation Error Analysis}
+\label{sec:error_analysis}
+
+We analyze the approximation error introduced by the memory hierarchy.
+At decoding step $t$, the exact attention output for head $h$ in layer $\ell$ is:
+\begin{equation}
+    \mathbf{o}_{\ell,h}^{(t)} = \sum_{i=1}^{t} \alpha_{\ell,h}^{(t)}[i] \, \mathbf{v}_{\ell,h}[i]
+\end{equation}
+where $\alpha_{\ell,h}^{(t)}[i]$ is the softmax attention weight for position $i$ and $\mathbf{v}_{\ell,h}[i]$ is the corresponding value vector.
+
+Under our hierarchy, tokens in T0 (HBM) and T1 (DDR) participate in attention at full precision---T1 tokens are prefetched to GPU before computation, so they contribute \emph{exactly} the same terms as in the full-cache case.
+Only tokens in T3 (evicted) are missing.
+Let $\mathcal{E} \subset \{1, \ldots, t\}$ denote the set of evicted positions.
+The approximate output is:
+\begin{equation}
+    \hat{\mathbf{o}}_{\ell,h}^{(t)} = \frac{1}{Z'} \sum_{i \notin \mathcal{E}} \exp(q^\top k_i / \sqrt{d}) \, \mathbf{v}_{\ell,h}[i]
+\end{equation}
+where $Z' = \sum_{i \notin \mathcal{E}} \exp(q^\top k_i / \sqrt{d})$ renormalizes after eviction.
+Using the triangle inequality, the per-head error is bounded by:
+\begin{equation}
+    \|\hat{\mathbf{o}}_{\ell,h}^{(t)} - \mathbf{o}_{\ell,h}^{(t)}\| \leq 2 \sum_{i \in \mathcal{E}} \alpha_{\ell,h}^{(t)}[i] \, \|\mathbf{v}_{\ell,h}[i]\|
+    \label{eq:error_bound}
+\end{equation}
+
+This bound has two important implications.
+First, \textbf{T1 tokens contribute zero error}---regardless of whether they reside in HBM or DDR, their contribution to attention is exact after prefetching.
+This explains our empirical finding that accuracy depends on the eviction ratio, not the HBM ratio: moving tokens between T0 and T1 changes \emph{where} they are stored but not \emph{whether} they participate in attention.
+
+Second, the error is weighted by $\alpha_{\ell,h}^{(t)}[i] \|\mathbf{v}_{\ell,h}[i]\|$---the product of attention weight and value norm for each evicted position.
+Since our importance scoring assigns the lowest-scoring tokens to T3, and these tokens by definition have small cumulative attention weights, the bound is minimized under our tier assignment.
+Concretely, when the eviction ratio $r_\text{evict}$ is small (e.g., 3--5\%), the evicted set $\mathcal{E}$ captures tokens from the tail of the importance distribution (bottom 3--5\%), which our profiling shows contribute $<$1\% of total attention mass (Section~\ref{sec:longtail}).
+The resulting approximation error is therefore negligible for T0/T1 operations and tightly controlled for T3 eviction.
+
 
 % ══════════════════════════════════════════════════════════════════════
 \section{Experiments}
