@@ -1,0 +1,318 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "kv_config": {
+    "n_layers": 28,
+    "n_heads": 28,
+    "head_dim": 128,
+    "dtype": "float16",
+    "bytes_per_token": 401408
+  },
+  "n_warmup": 5,
+  "n_repeats": 50,
+  "single_layer": {
+    "1": {
+      "data_size_mb": 0.014,
+      "gpu_to_cpu_ms": {
+        "mean": 0.012,
+        "std": 0.002,
+        "median": 0.012
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.013,
+        "std": 0.001,
+        "median": 0.013
+      }
+    },
+    "4": {
+      "data_size_mb": 0.055,
+      "gpu_to_cpu_ms": {
+        "mean": 0.013,
+        "std": 0.001,
+        "median": 0.012
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.017,
+        "std": 0.001,
+        "median": 0.017
+      }
+    },
+    "16": {
+      "data_size_mb": 0.219,
+      "gpu_to_cpu_ms": {
+        "mean": 0.012,
+        "std": 0.001,
+        "median": 0.012
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.016,
+        "std": 0.002,
+        "median": 0.016
+      }
+    },
+    "64": {
+      "data_size_mb": 0.875,
+      "gpu_to_cpu_ms": {
+        "mean": 0.039,
+        "std": 0.001,
+        "median": 0.039
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.039,
+        "std": 0.014,
+        "median": 0.037
+      }
+    },
+    "128": {
+      "data_size_mb": 1.75,
+      "gpu_to_cpu_ms": {
+        "mean": 0.077,
+        "std": 0.001,
+        "median": 0.077
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.073,
+        "std": 0.019,
+        "median": 0.068
+      }
+    },
+    "256": {
+      "data_size_mb": 3.5,
+      "gpu_to_cpu_ms": {
+        "mean": 0.155,
+        "std": 0.003,
+        "median": 0.154
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.148,
+        "std": 0.019,
+        "median": 0.144
+      }
+    },
+    "512": {
+      "data_size_mb": 7.0,
+      "gpu_to_cpu_ms": {
+        "mean": 0.312,
+        "std": 0.007,
+        "median": 0.31
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.293,
+        "std": 0.039,
+        "median": 0.284
+      }
+    },
+    "768": {
+      "data_size_mb": 10.5,
+      "gpu_to_cpu_ms": {
+        "mean": 0.462,
+        "std": 0.008,
+        "median": 0.461
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.429,
+        "std": 0.064,
+        "median": 0.414
+      }
+    },
+    "1024": {
+      "data_size_mb": 14.0,
+      "gpu_to_cpu_ms": {
+        "mean": 0.614,
+        "std": 0.01,
+        "median": 0.615
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.566,
+        "std": 0.082,
+        "median": 0.545
+      }
+    },
+    "1422": {
+      "data_size_mb": 19.441,
+      "gpu_to_cpu_ms": {
+        "mean": 0.859,
+        "std": 0.017,
+        "median": 0.859
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.883,
+        "std": 0.084,
+        "median": 0.857
+      }
+    }
+  },
+  "all_layers": {
+    "1": {
+      "total_data_mb": 0.38,
+      "gpu_to_cpu_ms": {
+        "mean": 0.204,
+        "std": 0.003,
+        "median": 0.203
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.209,
+        "std": 0.005,
+        "median": 0.207
+      },
+      "bandwidth_gpu_to_cpu_gbps": 1.83,
+      "bandwidth_cpu_to_gpu_gbps": 1.79
+    },
+    "4": {
+      "total_data_mb": 1.53,
+      "gpu_to_cpu_ms": {
+        "mean": 0.201,
+        "std": 0.003,
+        "median": 0.2
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.253,
+        "std": 0.011,
+        "median": 0.25
+      },
+      "bandwidth_gpu_to_cpu_gbps": 7.43,
+      "bandwidth_cpu_to_gpu_gbps": 5.91
+    },
+    "16": {
+      "total_data_mb": 6.12,
+      "gpu_to_cpu_ms": {
+        "mean": 0.343,
+        "std": 0.003,
+        "median": 0.343
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 0.423,
+        "std": 0.036,
+        "median": 0.414
+      },
+      "bandwidth_gpu_to_cpu_gbps": 17.42,
+      "bandwidth_cpu_to_gpu_gbps": 14.13
+    },
+    "64": {
+      "total_data_mb": 24.5,
+      "gpu_to_cpu_ms": {
+        "mean": 1.084,
+        "std": 0.006,
+        "median": 1.084
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 1.488,
+        "std": 0.086,
+        "median": 1.457
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.07,
+      "bandwidth_cpu_to_gpu_gbps": 16.08
+    },
+    "128": {
+      "total_data_mb": 49.0,
+      "gpu_to_cpu_ms": {
+        "mean": 2.145,
+        "std": 0.01,
+        "median": 2.144
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 3.095,
+        "std": 0.109,
+        "median": 3.055
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.31,
+      "bandwidth_cpu_to_gpu_gbps": 15.46
+    },
+    "256": {
+      "total_data_mb": 98.0,
+      "gpu_to_cpu_ms": {
+        "mean": 4.282,
+        "std": 0.022,
+        "median": 4.278
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 6.466,
+        "std": 0.371,
+        "median": 6.29
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.35,
+      "bandwidth_cpu_to_gpu_gbps": 14.8
+    },
+    "512": {
+      "total_data_mb": 196.0,
+      "gpu_to_cpu_ms": {
+        "mean": 8.581,
+        "std": 0.049,
+        "median": 8.572
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 13.063,
+        "std": 0.372,
+        "median": 12.977
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.31,
+      "bandwidth_cpu_to_gpu_gbps": 14.65
+    },
+    "768": {
+      "total_data_mb": 294.0,
+      "gpu_to_cpu_ms": {
+        "mean": 12.947,
+        "std": 0.089,
+        "median": 12.925
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 19.566,
+        "std": 0.43,
+        "median": 19.379
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.18,
+      "bandwidth_cpu_to_gpu_gbps": 14.67
+    },
+    "1024": {
+      "total_data_mb": 392.0,
+      "gpu_to_cpu_ms": {
+        "mean": 17.259,
+        "std": 0.066,
+        "median": 17.257
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 25.933,
+        "std": 0.589,
+        "median": 25.753
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.18,
+      "bandwidth_cpu_to_gpu_gbps": 14.76
+    },
+    "1422": {
+      "total_data_mb": 544.36,
+      "gpu_to_cpu_ms": {
+        "mean": 24.055,
+        "std": 0.071,
+        "median": 24.034
+      },
+      "cpu_to_gpu_ms": {
+        "mean": 36.409,
+        "std": 1.445,
+        "median": 35.913
+      },
+      "bandwidth_gpu_to_cpu_gbps": 22.1,
+      "bandwidth_cpu_to_gpu_gbps": 14.6
+    }
+  },
+  "attention_compute_ref": {
+    "128": {
+      "mean": 0.028,
+      "std": 0.002
+    },
+    "256": {
+      "mean": 0.028,
+      "std": 0.001
+    },
+    "512": {
+      "mean": 0.027,
+      "std": 0.001
+    },
+    "1024": {
+      "mean": 0.029,
+      "std": 0.001
+    },
+    "1422": {
+      "mean": 0.04,
+      "std": 0.001
+    }
+  }
+}

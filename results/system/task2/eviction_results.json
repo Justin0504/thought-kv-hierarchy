@@ -1,0 +1,32 @@
+{
+  "attention (budget=90%)": {
+    "accuracy": 0.68,
+    "correct": 34,
+    "tested": 50
+  },
+  "attention (budget=70%)": {
+    "accuracy": 0.32,
+    "correct": 16,
+    "tested": 50
+  },
+  "attention (budget=50%)": {
+    "accuracy": 0.08,
+    "correct": 4,
+    "tested": 50
+  },
+  "gradient (budget=90%)": {
+    "accuracy": 0.7,
+    "correct": 35,
+    "tested": 50
+  },
+  "gradient (budget=70%)": {
+    "accuracy": 0.32,
+    "correct": 16,
+    "tested": 50
+  },
+  "gradient (budget=50%)": {
+    "accuracy": 0.02,
+    "correct": 1,
+    "tested": 50
+  }
+}

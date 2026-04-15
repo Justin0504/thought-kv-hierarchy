@@ -1,0 +1,80 @@
+{
+  "Full (100% GPU)": {
+    "accuracy": 0.76,
+    "correct": 38,
+    "tested": 50,
+    "total_tokens": 55554,
+    "total_time_sec": 2545.94,
+    "tokens_per_sec": 21.82,
+    "avg_time_per_sample_sec": 50.92
+  },
+  "Eviction (50% HBM)": {
+    "accuracy": 0.08,
+    "correct": 4,
+    "tested": 50,
+    "total_tokens": 95817,
+    "total_time_sec": 4811.19,
+    "tokens_per_sec": 19.92,
+    "avg_time_per_sample_sec": 96.22
+  },
+  "Eviction (30% HBM)": {
+    "accuracy": 0.02,
+    "correct": 1,
+    "tested": 50,
+    "total_tokens": 100630,
+    "total_time_sec": 5018.77,
+    "tokens_per_sec": 20.05,
+    "avg_time_per_sample_sec": 100.38
+  },
+  "Hierarchy (50% HBM, 10% evict)": {
+    "accuracy": 0.78,
+    "correct": 39,
+    "tested": 50,
+    "total_tokens": 59409,
+    "total_time_sec": 3172.43,
+    "tokens_per_sec": 18.73,
+    "avg_time_per_sample_sec": 63.45,
+    "offloader_avg": {
+      "offload_ms": 10.02,
+      "prefetch_ms": 4078.58,
+      "compute_ms": 56092.1,
+      "offload_tokens": 784.0,
+      "prefetch_tokens": 532152.0,
+      "transfer_overhead_pct": 5.2
+    }
+  },
+  "Hierarchy (30% HBM, 10% evict)": {
+    "accuracy": 0.72,
+    "correct": 36,
+    "tested": 50,
+    "total_tokens": 57820,
+    "total_time_sec": 3085.97,
+    "tokens_per_sec": 18.74,
+    "avg_time_per_sample_sec": 61.72,
+    "offloader_avg": {
+      "offload_ms": 9.12,
+      "prefetch_ms": 4210.88,
+      "compute_ms": 54470.62,
+      "offload_tokens": 836.5,
+      "prefetch_tokens": 568175.1,
+      "transfer_overhead_pct": 5.4
+    }
+  },
+  "Hierarchy (50% HBM, 5% evict)": {
+    "accuracy": 0.68,
+    "correct": 34,
+    "tested": 50,
+    "total_tokens": 55074,
+    "total_time_sec": 2930.97,
+    "tokens_per_sec": 18.79,
+    "avg_time_per_sample_sec": 58.62,
+    "offloader_avg": {
+      "offload_ms": 8.6,
+      "prefetch_ms": 3776.13,
+      "compute_ms": 51826.33,
+      "offload_tokens": 801.3,
+      "prefetch_tokens": 501127.5,
+      "transfer_overhead_pct": 5.2
+    }
+  }
+}
