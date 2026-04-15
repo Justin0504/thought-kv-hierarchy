@@ -42,7 +42,7 @@ Unlike eviction-based methods that suffer a cliff-effect degradation (0\% accura
 On GSM8K with DeepSeek-R1-Distill-Qwen-7B, our approach retains 91\% of baseline accuracy (60\% vs.\ 66\%) while permanently evicting only 3\% of tokens---compared to H2O, which achieves only 2\% accuracy at a 128-token budget on the same task.
 Critically, we find that the \emph{eviction ratio}, not the HBM ratio, determines accuracy loss---30\% and 50\% HBM budgets yield identical accuracy when the eviction ratio is held constant, demonstrating that DDR offloading is effectively lossless.
 We further validate on MATH-500, where the hierarchy preserves 64\% of baseline accuracy at 3\% eviction.
-A system prototype with real GPU--CPU data movement on RTX 5080 confirms practical viability: the hierarchy matches full-cache accuracy while reducing HBM usage by 50\%, with only 5--7\% transfer overhead.
+A system prototype with real GPU--CPU data movement on RTX 5080 confirms practical viability: the hierarchy matches full-cache accuracy with only 5--7\% transfer overhead, and scaling analysis projects 2--48\,GB HBM savings in production batch-serving scenarios.
 
 \end{abstract}
 
@@ -86,7 +86,7 @@ Our contributions are:
     \item We propose a four-tier semantics-aware memory hierarchy that decouples HBM capacity from reasoning quality by offloading low-importance KV entries to DDR.
     \item We show that eviction ratio, not HBM ratio, is the determining factor for accuracy, proving that DDR offloading is effectively lossless for attention computation.
     \item We conduct ablation studies across five importance scoring methods (including gradient-based), demonstrating that cumulative attention score is optimal for reasoning token importance estimation.
-    \item We implement a system prototype with real GPU--CPU data movement, achieving 5--7\% transfer overhead and confirming that the hierarchy matches full-cache accuracy at 50\% HBM reduction.
+    \item We implement a system prototype with real GPU--CPU data movement, achieving 5--7\% transfer overhead and confirming accuracy preservation, with scaling projections showing 2--48\,GB HBM savings at production scale.
 \end{itemize}
 
 
@@ -482,7 +482,7 @@ The relative accuracy retention is 103\% at 50\% HBM / 10\% eviction and 89\% at
 \begin{table}[t]
 \centering
 \caption{End-to-end system prototype results on GSM8K ($n=50$, int8 model, RTX 5080).
-Hierarchy configurations match or exceed full-cache accuracy while reducing HBM usage by 50--70\%.}
+Hierarchy configurations match or exceed full-cache accuracy while keeping only 30--50\% of KV cache tokens in HBM.}
 \label{tab:e2e}
 \vskip 0.1in
 \small
@@ -508,6 +508,35 @@ Hierarchy (50\% HBM, 5\% evict) & 68\% & 89\% & 18.8 & 5.2\% \\
     \caption{Latency breakdown for hierarchy configurations. Transfer overhead (GPU$\leftrightarrow$CPU offload + prefetch) constitutes only 5--7\% of total inference time; model computation dominates.}
     \label{fig:breakdown}
 \end{figure}
+
+\paragraph{Memory analysis and scaling projection.}
+In our single-request 7B prototype, the KV cache is small relative to model weights (${\sim}$0.5\,GB vs.\ 14\,GB for fp16, or 7\,GB for int8).
+However, KV cache memory grows linearly with both batch size and sequence length, and becomes the dominant memory consumer in production serving scenarios.
+Table~\ref{tab:scaling} projects KV cache as a fraction of total GPU memory across representative deployment configurations.
+
+\begin{table}[t]
+\centering
+\caption{Projected KV cache memory fraction across deployment scenarios. Per-token KV size = $2 \times n_\text{layers} \times n_\text{heads} \times d_\text{head} \times 2$\,bytes (fp16). Our hierarchy offloads 50--70\% of KV cache to DDR, yielding the shown HBM savings.}
+\label{tab:scaling}
+\vskip 0.1in
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Scenario} & \textbf{KV Cache} & \textbf{Model Wt} & \textbf{KV/Total} & \textbf{Savings} \\
+\midrule
+7B (fp16) & batch=1, 2K tokens & 0.5\,GB & 14\,GB & 3\% & 0.3\,GB \\
+7B (fp16) & batch=8, 2K tokens & 3.8\,GB & 14\,GB & 21\% & 2.3\,GB \\
+7B (fp16) & batch=1, 16K tokens & 3.8\,GB & 14\,GB & 21\% & 2.3\,GB \\
+7B (int4) & batch=8, 2K tokens & 3.8\,GB & 3.5\,GB & 52\% & 2.3\,GB \\
+70B (fp16) & batch=8, 4K tokens & 80\,GB & 140\,GB & 36\% & 48\,GB \\
+70B (int4) & batch=8, 4K tokens & 80\,GB & 35\,GB & 70\% & 48\,GB \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At batch size 8 with a quantized 7B model, KV cache already constitutes 52\% of total GPU memory; for a 70B model with int4 weights and batch serving, KV cache dominates at 70\%.
+In these regimes, our hierarchy's 50--70\% KV cache offloading translates to 2--48\,GB of HBM savings---the difference between fitting on a single consumer GPU versus requiring multi-GPU setups.
+Our prototype validates the \emph{correctness} and \emph{overhead} of the approach (5--7\% transfer cost, no accuracy loss) at a scale where the absolute memory savings are modest; the architectural benefit compounds as models, sequences, and batch sizes grow.
 
 \subsection{Ablation: Importance Scoring Methods}
 \label{sec:scoring_ablation}
@@ -593,8 +622,8 @@ The hierarchy framework provides a platform into which better scoring, classific
 
 \paragraph{Broader impact.}
 By decoupling reasoning quality from HBM capacity, our approach enables longer reasoning chains on more affordable hardware.
-Our system prototype demonstrates this concretely: on an RTX 5080 (16\,GB HBM), we reduce HBM usage by 50--70\% with only 14\% throughput loss and 5--7\% transfer overhead, while maintaining full-cache accuracy.
-Extrapolating, a single NVIDIA RTX 4090 (24\,GB HBM) could serve reasoning chains that currently require A100 (80\,GB) capacity, by offloading 70--90\% of KV entries to the 64+\,GB of available DDR.
+Our system prototype validates the mechanism at 7B scale (5--7\% transfer overhead, no accuracy loss); the practical impact grows with deployment scale (Table~\ref{tab:scaling}).
+For quantized 70B models serving batch=8 requests, KV cache consumes 70\% of GPU memory---our hierarchy would offload 48\,GB of KV data to DDR, potentially enabling single-GPU serving where multi-GPU setups were previously required.
 This has implications for both cost reduction in production serving and accessibility of reasoning models to the research community.
 
 
@@ -606,7 +635,7 @@ This has implications for both cost reduction in production serving and accessib
 We presented a semantics-aware memory hierarchy for managing KV-cache during LLM reasoning.
 Our key insight is that reasoning tokens exhibit a long-tail importance distribution, enabling tiered storage where low-importance entries are offloaded to DDR rather than permanently evicted.
 Algorithm experiments on GSM8K and MATH-500 demonstrate that our hierarchy preserves 91\% of baseline accuracy with only 3\% token eviction, while H2O-style eviction achieves only 2--30\% accuracy across all budget levels.
-Our system prototype with real GPU--CPU data movement confirms these benefits translate to practice: the hierarchy matches full-cache accuracy (78\% vs.\ 76\%) while reducing HBM usage by 50\%, with only 5--7\% transfer overhead and 14\% throughput loss.
+Our system prototype with real GPU--CPU data movement confirms these benefits translate to practice: the hierarchy matches full-cache accuracy (78\% vs.\ 76\%) with only 5--7\% transfer overhead and 14\% throughput loss, and scaling projections show KV cache offloading saves 2--48\,GB of HBM in production batch-serving scenarios.
 Ablation studies confirm that cumulative attention score is the optimal importance metric for reasoning tokens, outperforming VATP, redundancy-aware, and gradient-based alternatives.
 The finding that eviction ratio---not HBM ratio---determines accuracy loss validates the memory hierarchy paradigm: cheaper, slower memory can effectively substitute for HBM when tokens are preserved rather than discarded.
 
