@@ -119,3 +119,21 @@ See [SPEC_FOR_B.md](SPEC_FOR_B.md) for systems-side work specification (PCIe off
 ## Related Work
 
 See [results/related_work_report.md](results/related_work_report.md) for a survey of 20 related papers including ThinKV, R-KV, StreamingLLM, H2O, ArkVale, etc.
+
+<!-- aojieyuan-paper-section -->
+## Paper & citation
+
+This repository accompanies **[Not All Thoughts Need HBM: Semantics-Aware Memory Hierarchy for LLM Reasoning](https://arxiv.org/abs/2605.09490)**, by [Aojie (Justin) Yuan](https://aojieyuan.com), Tianqi Shen, Dajun Zhang.
+
+- Paper page (PDF, abstract, BibTeX): https://aojieyuan.com/papers/not-all-thoughts-need-hbm
+- arXiv: https://arxiv.org/abs/2605.09490
+- Plain-language explainer: https://aojieyuan.com/blog/do-llm-reasoning-models-need-all-memory-in-hbm · [中文解读](https://aojieyuan.com/zh/blog/do-llm-reasoning-models-need-all-memory-in-hbm)
+
+```bibtex
+@article{yuan2026thoughts,
+  title   = {Not All Thoughts Need HBM: Semantics-Aware Memory Hierarchy for LLM Reasoning},
+  author  = {Yuan, Aojie and Shen, Tianqi and Zhang, Dajun},
+  journal = {arXiv preprint arXiv:2605.09490},
+  year    = {2026}
+}
+```
